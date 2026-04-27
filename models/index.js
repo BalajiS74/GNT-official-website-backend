@@ -48,6 +48,50 @@ export const deleteContact = async (id) => {
 };
 
 /* =========================
+   CEO PORTFOLIO MODEL
+========================= */
+export const saveCeoPortfolio = async ({ name, email, subject, message }) => {
+  const collection = getCollection("ceo_portfolios");
+  const result = await collection.insertOne({
+    name,
+    email,
+    subject,
+    message,
+    createdAt: new Date(),
+  });
+  return result;
+};
+
+export const getCeoPortfolios = async () => {
+  const collection = getCollection("ceo_portfolios");
+  return collection.find().sort({ _id: -1 }).toArray();
+};
+
+export const getCeoPortfolioById = async (id) => {
+  const collection = getCollection("ceo_portfolios");
+  const objectId = toObjectId(id);
+  if (!objectId) return null;
+  return collection.findOne({ _id: objectId });
+};
+
+export const updateCeoPortfolio = async ({ id, name, email, subject, message }) => {
+  const collection = getCollection("ceo_portfolios");
+  const objectId = toObjectId(id);
+  if (!objectId) return null;
+  return collection.updateOne(
+    { _id: objectId },
+    { $set: { name, email, subject, message, updatedAt: new Date() } }
+  );
+};
+
+export const deleteCeoPortfolio = async (id) => {
+  const collection = getCollection("ceo_portfolios");
+  const objectId = toObjectId(id);
+  if (!objectId) return null;
+  return collection.deleteOne({ _id: objectId });
+};
+
+/* =========================
    REGISTER MODEL
 ========================= */
 export const saveRegister = async (data) => {

@@ -7,6 +7,7 @@ import registerRoute from "./routes/registerRoute.js";
 import contactRoute from "./routes/contactRoute.js";
 import jobRoute from "./routes/jobRoute.js";
 import meetingRoute from "./routes/meetingRoute.js";
+import ceoPortfolioRoute from "./routes/ceoPortfolioRoute.js";
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use("/api", registerRoute);
 app.use("/api", contactRoute);
 app.use("/api", jobRoute);
 app.use("/api", meetingRoute);
+app.use("/api", ceoPortfolioRoute);
 
 /* =========================
    TEST ROUTE
